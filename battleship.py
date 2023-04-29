@@ -6,14 +6,14 @@ from boat import Boat
 from agent import Agent
 # Game configuration
 GAME_CONFIG = {
-    "width" : 8,
-    "height" : 8,
+    "width" : 5,
+    "height" : 5,
     "boats": {
-    "carrier" : {"size" : 5, "number" : 1},
-    "battleship" : {"size" : 5, "number" : 1},
-    "cruiser" : {"size" : 5, "number" : 1},
-    "submarine" : {"size" : 5, "number" : 1},
-    "destroyer" : {"size" : 5, "number" : 1}
+    "carrier" : {"size" : 2, "number" : 1},
+    "battleship" : {"size" : 2, "number" : 1},
+    "cruiser" : {"size" : 3, "number" : 1},
+    #"submarine" : {"size" : 3, "number" : 1},
+    #"destroyer" : {"size" : 5, "number" : 1}
     }
 }
 
@@ -42,7 +42,7 @@ def place_boats(game_config):
                     break
     return board
 
-def play_game(game_config:Dict, agent:Agent):
+def play_game(game_config:Dict, agent:Agent, is_update:bool = True):
     board = place_boats(game_config)
     nb_move = 0
     while not board.is_game_over():
@@ -52,9 +52,10 @@ def play_game(game_config:Dict, agent:Agent):
         row, col = action
         reward = board.fire_shot(row, col)
         next_state = board
-        agent.update(state, action, next_state, reward)
-        print(nb_move)
-        print(board.grid)
-        print(board.is_game_over())
-    return board.boats
+        if is_update:
+            agent.update(state, action, next_state, reward)
+        #print(nb_move)
+        #print(board.grid)
+        #print(board.is_game_over())
+    return nb_move  
 
