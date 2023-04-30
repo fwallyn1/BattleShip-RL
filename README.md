@@ -41,7 +41,7 @@ For the deep learning agent in a gym environment with nice rendering, run the `d
 
 
 ## Results
-Due to the number of possible state, classic Q learning strategy does not outperform the random strategy. Even when adding constraint in the possible action (Hit Close : hit a cell adjacent with a touched cell). So we explore deep Q learning using gym env from openAI and Tensorflow. The gym env can be found in `battleship_env.py`. The rewards was 
+Due to the number of possible state, classic Q learning strategy does not outperform the random strategy (23 hits by mean to win). Even when adding constraint in the possible action (Hit Close : hit a cell adjacent with a touched cell : 17 hits by mean to win). So we explore deep Q learning using gym env from openAI and Tensorflow. The gym env can be found in `battleship_env.py`. The rewards was 
 
 ```
 { 
