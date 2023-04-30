@@ -37,12 +37,27 @@ In summary, Q-learning is a reinforcement learning algorithm that allows an agen
 ## Running the Code
 To run the code, simply run the play_game() function in the battleship.py file. This will start a new game of Battleship and run the AI player using Q-learning. You can change the number of games played and other settings by modifying the parameters in the play_game() function.
 
+For the deep learning agent in a gym environment with nice rendering, run the `dqn_play.ipynb`. But first you need to install requirements `pip install -r requirements.txt`
+
 
 ## Results
-After training the AI player using Q-learning, we can see a significant improvement in its performance compared to random guessing. When playing randomly, it can take an average of x guesses to sink all of the ships on a 5x5 board with 3 ships of sizes 3, 3, and 2. However, after training with Q-learning, the AI player is able to sink all of the ships in significantly fewer guesses, often in less than x guesses.
+Due to the number of possible state, classic Q learning strategy does not outperform the random strategy. Even when adding constraint in the possible action (Hit Close : hit a cell adjacent with a touched cell). So we explore deep Q learning using gym env from openAI and Tensorflow. The gym env can be found in `battleship_env.py`. The rewards was 
 
+```
+{ 
+'win': 100,
+'missed': 0,
+'touched': 1,
+'repeat_missed': -1,
+'repeat_touched': -0.5
+}
+```
+
+The architecture of the agent can be found in `dqn_agent.py` :
+
+This deep learning approach need a lot of computational power. Without GPU, we were not able to have good results. Moreover, it is very difficult to have a change in environment in gym. So we were not able to constraint the possible action. Even penalizing these actions, our model trained on few episodes have bad behaviour (hit multiple times the same cell). 
 ## Conclusion
-In conclusion, this project demonstrates the power of Q-learning for developing intelligent agents that can learn from their experiences and gradually improve their performance over time. The AI player developed in this project is able to outperform random guessing and provide a challenging opponent for players of the game of Battleship.
+In conclusion, this project was very difficult because the battleship isn't well adapted for RL due to the number of possible state. When using classic Q learning, we were not able to outperform random policy neither the hit close policy that constraint the possible action. The exploration of deep q learning wasn't succesfull due to computational constraint.
 ## Authors
 
 - [@gpain1999](https://www.github.com/gpain1999)

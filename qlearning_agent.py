@@ -39,5 +39,5 @@ class QLearningAgent(Agent):
         if old_q_value is None:
             self.q_table[(tuple(flat_state), action)] = reward
         else:
-            next_max_q = max([self.q_table.get((tuple(flat_state), next_move), 0) for next_move in next_state.get_valid_moves()])
+            next_max_q = max([self.q_table.get((tuple(flat_next_state), next_move), 0) for next_move in next_state.get_valid_moves()]) if len(next_state.get_valid_moves())>0 else 0
             self.q_table[(tuple(flat_state), action)] = old_q_value + self.alpha * (reward + self.gamma * next_max_q - old_q_value)

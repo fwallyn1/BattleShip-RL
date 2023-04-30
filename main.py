@@ -29,9 +29,11 @@ q_agent = QLearningAgent()
 NB_GAME_UPDATE = 50000
 NB_GAME = 10000
 moves_list = []
-for i in range(NB_GAME_UPDATE):
-    nb_move = play_game(GAME_CONFIG,q_agent,is_update=True)
 
+for i in range(NB_GAME_UPDATE):
+    #print(i)
+    nb_move = play_game(GAME_CONFIG,q_agent,is_update=True)
+q_agent.epsilon = 1
 for i in range(NB_GAME_UPDATE):
     nb_move = play_game(GAME_CONFIG,q_agent,is_update=False)
     moves_list.append(nb_move)
